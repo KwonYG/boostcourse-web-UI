@@ -46,5 +46,4 @@ https://developer.mozilla.org/en-US/docs/Glossary/Semantics
 ## 4) 블록&인라인
 - 블록 레벨 요소 ⊂ 인라인 레벨 요소를 허용하지 않는다.
 - 단, 예외적으로 `a` 태그는 자식요소로 블록 레벨 요소를 넣을 수 있다.  
-
 ---
