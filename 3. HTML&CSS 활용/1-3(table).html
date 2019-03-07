@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>다단 레이아웃 display:table 방식</title>
+    <style>
+        html, body,  .wrap{
+            height: 100%;
+        }
+        .header {
+            height: 100px;
+            background-color: lightgreen;
+        }
+
+        .container {
+            display:table;
+            table-layout: fixed;
+            width:800px;
+            margin: -100px auto;
+            padding: 100px 0;
+            min-height: 100%;
+        }
+
+        .content {
+            display:table-cell;
+            width:500px;
+            height: 300px;
+            border-right: 5px solid black;
+            background-color: lightsalmon;
+            box-sizing: border-box;
+        }
+
+        .aside {
+            display:table-cell;
+            height: 300px;
+            background-color: lightseagreen;
+        }
+
+        .footer {
+            height: 100px;
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">header</div>
+        <div class="container">
+            <!-- content와 aside의 묶음 영역 추가 -->
+            <div class="content">content</div>
+            <div class="aside">aside</div>
+        </div>
+        <div class="footer">footer</div>
+    </div>
+</body>
+</html>
