@@ -68,7 +68,7 @@
 - container 영역의 높이값 100% 설정
     - 부모값을 상속받는 다는 것을 주의하자.
     - 최상위 요소(`<html>`, `<body>`, `.wrap`)에 높이를 지정해주어야한다.
-- `header` 영역이 fixed가 아니기 때문에-> 무슨말?
+- ★`header` 영역이 fixed가 아니기 때문에 header 영역의 ㄴ
 
 ###### 구분선 넣기
 - `container` 영역 안에 두 콘텐츠의 구분선을 넣을 때 border의 굵기를 고려해야한다.
@@ -141,3 +141,29 @@
 본문 : https://www.edwith.org/boostcourse-ui/lecture/34579/
 
 ---
+### 4) 고정 레이아웃 제작
+
+#### 주요 기능 
+- header 영역과 footer 영역이 상하단에 고정노출
+- 컨텐츠의 최소높이값이 100%인 레이아웃형태 만들기
+
+#### 스타일 정보
+- header 상단 고정
+- footer 하단 고정
+- 콘텐츠 최소 높이값 100%
+
+#### 주요 태그 및 속성 
+- HTML
+- div
+- CSS
+- position: fixed
+- min-height
+- margin
+- padding
+
+본문 내용 : https://www.edwith.org/boostcourse-ui/lecture/34580/
+
+### 레이아웃 단원 요약정리
+- position:fixed
+- ★ `height:100%`는 부모에게 상속을 받아서 해야한다. 
+- 음수 margin을 이용해 content 높이 100% 확보
