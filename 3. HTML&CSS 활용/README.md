@@ -176,7 +176,7 @@
 - ★ `position:relative`를 선언하지 않으면 뒤의 요소 z-index가 위로 올라간다. `position:relative`를 선언하면 z-index가 새로 생성되어 .active요소가 올라간다.
 ---
 
-### 2) 1단 메뉴 제작
+### 2) 2단 메뉴 제작
 #### 제작 화면
 ![](./img/2-2-1.png)
 
