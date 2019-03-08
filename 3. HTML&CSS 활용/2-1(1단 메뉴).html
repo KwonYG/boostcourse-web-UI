@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1단 메뉴</title>
     <style>
         body {
             font-family: '나눔고딕', NanumGothic, Dotum, '돋움', sans-serif;
@@ -27,47 +30,47 @@
             color: inherit;
             text-decoration: none;
         }
-        
-        .wrap{
+
+        .wrap {
             max-width: 700px;
             min-width: 500px;
             margin: 5px;
         }
 
         .menu{
-            display:table;
-            table-layout: fixed;
+            display:table; /* 메뉴 간격을 일정하게 하기 위해 선언*/
+            table-layout: fixed; /* 전체 너비에서 균등하게 셀을 나눈다.*/
             width:100%;
         }
-
         .menu_item{
             display: table-cell;
         }
 
         .menu_link{
             display:block;
-            border:1px solid black;
-            font-size:12px;
+            height:36px;
+            border:1px solid #ddd;
+            font-size: 12px;
             line-height:36px;
-            text-align: center;
             color:#333;
+            text-align: center;            
         }
 
         .menu_item .menu_link{
-            margin-left: -1px;
+            margin-left:-1px; /* 각 셀 양쪽 border가 붙어있는 거 해결*/
         }
-
+        
         .menu_item:hover .menu_link{
             color: green;
             font-weight: bold;
         }
-        
+
         .menu_item.active .menu_link{
-            position:relative;
+            position:relative; /* position:relative를 선언하지 않으면 뒤의 요소 z-index가 위로 올라간다. position:relative를 선언하면 z-index가 새로 생성되어 .active요소가 올라간다.*/
             border-color:#555;
             font-weight: bold;
-            color:#fff;
-            background-color:gray;
+            color:#fff;            
+            background-color: gray;
         }
     </style>
 </head>

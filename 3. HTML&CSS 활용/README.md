@@ -141,3 +141,67 @@
 본문 : https://www.edwith.org/boostcourse-ui/lecture/34579/
 
 ---
+## 2. 메뉴
+### 2) 1단 메뉴 제작
+#### 제작 화면
+![](./img/2-1-1.png)
+
+#### 주요 기능 
+- 5개의 항목을 갖는 가로 메뉴 
+- 메뉴의 간격은 모두 동일
+- 선택 메뉴는 볼드 처리
+- 메뉴 활성화 시 배경색과 폰트 컬러 변경 
+
+#### 스타일 정보
+- 메뉴 - 전체 너비(min/max): 500px/700px
+- 메뉴 - 높이: 36px
+- 메뉴 - 폰트: 12px/#333, 외곽선: 1px/#ddd
+- 메뉴(활성화 시) - 배경색: gray, 폰트: 12px/bold/#fff, - - 외곽선: 1px/#555
+
+#### 주요 태그 및 속성 
+- HTML
+    - div, ul, li, a
+- CSS
+    - display, position, border, margin, background
+    - table-layout, :hover
+
+#### 추가사항
+- display: table
+- table-layout:fixed
+- `<a>` 태그 display:block;
+- line-height;
+- 붙어있는 메뉴 border 주의 (2px로 나옴)   
+    - margin-left: -1;
+- ★ `hover`를 줄때 메뉴 상위 요소(.menu_item)에게 부여한다.
+- ★ `position:relative`를 선언하지 않으면 뒤의 요소 z-index가 위로 올라간다. `position:relative`를 선언하면 z-index가 새로 생성되어 .active요소가 올라간다.
+---
+
+### 2) 1단 메뉴 제작
+#### 제작 화면
+![](./img/2-2-1.png)
+
+#### 주요 기능 
+- 메인, 서브 메뉴를 갖는 2단 가로 메뉴 
+- 메인, 서브 메뉴는 가로 중앙 정렬 처리
+- 메인 선택 메뉴는 볼드, 컬러 변경 처리
+- 서브 선택 메뉴는 볼드, 컬러 변경, 하단 라인 추가 처리
+
+#### 스타일 정보
+- 메인/서브 메뉴 - 높이: 50px
+- 메인 메뉴 - 폰트: 20px/#333
+- 메인 메뉴 (오버/활성화 시) - 폰트: 20px/bold/green
+- 서브 메뉴 - 폰트: 17px/#333
+- 서브 메뉴 (오버/활성화 시) - 폰트: 17px/bold/green, 하단 라인: 2px/green
+
+#### 주요 태그 및 속성 
+- HTML
+    - div, ul, li, a, span
+- CSS
+    - position, border, margin, padding, background text-align, :after, :hover
+ 
+ #### 추가사항
+ - `.menu_link`는 `.menu_item`과 동일한 크기를 가져야 하므로 `display:block`
+ - 서브 메뉴는 해당 아이템(`.menu_item`) 안에다가 만든다.
+ - ★서브 메뉴에 `position:absolute`를 사용하지만 그 부모요소(`.menu_item`)에 `postiion:relative`를 부여하면 안된다.
+ - ★서브메뉴 활성화시 생기는 밑줄을 텍스트 너비에 맞게 만들기 위해서 width값을 설정하는 것 보다 `<span>`태그와 `가상 선택자`를 사용해 항상 텍스트 너비에 맞게 만들어지게 해준다.  
+ ---
