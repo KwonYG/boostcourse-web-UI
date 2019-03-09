@@ -205,3 +205,631 @@
  - ★서브 메뉴에 `position:absolute`를 사용하지만 그 부모요소(`.menu_item`)에 `postiion:relative`를 부여하면 안된다.
  - ★서브메뉴 활성화시 생기는 밑줄을 텍스트 너비에 맞게 만들기 위해서 width값을 설정하는 것 보다 `<span>`태그와 `가상 선택자`를 사용해 항상 텍스트 너비에 맞게 만들어지게 해준다.  
  ---
+## 3. 이미지 목록
+### 2) 이미지 목록 제작
+
+#### UI 가이드 이해하기
+##### 레이아웃
+![](./img/3-2-1.png)
+- 브라우저가 특정 너비보다 커지더라도 콘텐츠는 좌우 여백이 동일한 크기로 중앙정렬되어야 한다. 
+
+
+##### 메인 이미지 리스트
+![](./img/3-2-2.png)
+
+##### 서브 이미지 리스트
+![](./img/3-2-3.png)
+
+#### 주요 기능 
+
+- 메인, 서브 리스트로 구성된 2단 이미지 리스트 
+- 메인, 서브 리스트는 가로 중앙 정렬 처리
+- 메인 리스트는 이미지 위 레이어 형태의 말줄임 텍스트 노출
+- 서브 리스트는 이미지 하단에 말줄임 텍스트 노출
+
+#### 스타일 정보
+- 메인/서브 리스트 - 전체 가로 너비: 1000px
+- 메인 리스트 -  메인 이미지: 322x215, 배경색: #ececec, 외곽선: 1px/solid/#000(투명도 5%)
+- 메인 리스트 - 카테고리 폰트: 14px/#fff, 제목 폰트: 18px/#fff 
+- 서브 리스트 -  서브 이미지: 188x141, 외곽선: 1px/solid/#000(투명도 3%)
+- 서브 리스트 - 카테고리 폰트: 12px/#7ba7df, 제목 폰트: 15px/#090909
+
+#### 주요 태그 및 속성 
+- HTML
+    - div, img, a, ol
+- CSS 
+    - float, position, ellipsis, :after, :nth-child
+
+#### 1. 이미지 리스트 정렬 
+[codepen 확인하기](https://codepen.io/hoonJJang/pen/KxwRPb)
+- `.main_list`의 여백을 줄 땐 형제선택자를 사용한다.
+- `.sub_list`의 각 라인 마지막 요소의 우측여백을 주지 않기 위해 `nth-child()`를 사용해 0으로 초기화한다.
+
+#### 2. 텍스트 말줄임
+[codepen 바로가기](https://codepen.io/hoonJJang/pen/OoPZLQ)
+```html
+<p class="elip1">가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하</p>
+<p class="elip2">가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하</p>
+<p class="elip3">가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하</p>
+```
+```css
+p {
+  width: 200px;
+  background-color: yellow;
+  font-size: 16px;
+  line-height: 20px;
+}
+.elip1 {
+  overflow: hidden; /* 넘어가면 안보이게 하기위해*/
+  text-overflow: ellipsis; /* 보이지 않는 부분은 ... 처리*/
+  white-space: nowrap; /* 한줄 말줄임의 경우 줄바꿈이 되면 안되기 때문에 설정*/
+}
+.elip2 {
+  max-height: 40px; /* webkit 외 브라우저 대응, line-height*line수 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.elip3 {
+  max-height: 60px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+```
+- 말줄임을 하기 위해 **고정너비**가 설정되어있어야 한다. (`<p>`)
+- IE, FireFox 계열에선 height 값을 꼭 선언해주어야한다.
+    - `line-clmap` : 줄 의미
+- `max-height`로 높이를 설정해주어야 콘텐츠 양에 따라 높이가 가변처리된다.
+
+#### 3. 이미지 액자 효과
+[codepen 바로가기](https://codepen.io/hoonJJang/pen/MqYqpN)
+```html
+<div class="img_wrap">
+  <img src="https://images.unsplash.com/photo-1544911845-1f34a3eb46b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" width="200" hegit="134" alt="임시 이미지">
+<div>
+```
+```css
+.img_wrap {
+  position: relative;/* 가상선택자를 위해 선언 */
+  width: 200px;
+  height: 134px;
+}
+.img_wrap:after {
+  position: absolute; /* 이미지 위로 띄우기 위해 사용 */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*너비, 높이는 부모에게 상속받는다.*/
+  content: '';
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.15);
+}
+```
+- 불필요한 태그를 사용하지 않기 위해 가상선택자를 이용해주면 좋다. 여기서는 액자 효과를 주기위해 가상선택자를 사용했다.
+- rgba()는 16진수 컬러값과 투명도 사용할 수 있다. ex) 0.3 -> 투명도 30%
+- 사진위에 흰색 텍스트가 들어갈 경우 사진의 색과 겹쳐 잘 보이지 않을 수 있다. 그래서 섬네일 사진에 dim 처리를 한다.
+
+#### 메인 리스트 제작하기
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        @charset "UTF-8";
+
+        /* 기본 스타일 */
+        body {
+            font-family: Dotum, '돋움', Helvetica, sans-serif;
+            font-size: 15px;
+            line-height: 18px;
+            color: #3c3c3c;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            vertical-align: top;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        h1 {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+            font-size: 26px;
+            line-height: 38px;
+            color: #000;
+        }
+
+        .main_wrap {
+            background-color: #ececec;
+        }
+
+        .main_wrap .content {
+            position: relative;
+            width: 1000px;
+            margin: 0 auto;
+            padding: 50px 0 20px;
+        }
+
+        .main_wrap .noti_txt {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            font-size: 12px;
+            color: #7c7c7c;
+        }
+
+        .main_list li {
+            float: left;
+        }
+
+        .main_list::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        .main_list li+li {
+            margin-left: 17px;
+        }
+
+        .main_list .item_link {
+            position: relative;
+            display: block;
+        }
+
+        .main_list .img_box img {
+            width: 322px;
+            height: 215px;
+        }
+        
+        .main_list .img_box {
+            position: relative;
+        }
+
+        .main_list .img_box:after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .main_list .info {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            left: 15px;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .main_list .category{
+            font-size:14px;
+            line-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .main_list .title{
+            margin-top:3px;
+            font-size: 18px;
+            line-height:22px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>TOP100</h1>
+        <div class="main_wrap">
+            <div class="content">
+                <p class="noti_txt">8.21 오전 9시 ~ 오전 10시 기준 (재생수, 재생시간, 좋아요)</p>
+                <ol class="main_list">
+                    <li>
+                        <a href="#" class="item_link">
+                            <div class="img_box"><img src="./img/img1/thumb_image_large.jpg" alt=""></div>
+                            <div class="info">
+                                <span class="category">산악스키</span>
+                                <p class="title">오스트리아 최대의 산악스키 연맹, 산악스키 아마데! 5개 지역에 걸쳐있고, 총 25여개의 슬로프 길이</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item_link">
+                            <div class="img_box"><img src="./img/img1/thumb_image_large.jpg" alt=""></div>
+                            <div class="info">
+                                <span class="category">산악스키</span>
+                                <p class="title">오스트리아 최대의 산악스키 연맹, 산악스키 아마데! 5개 지역에 걸쳐있고, 총 25여개의 슬로프 길이</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item_link">
+                            <div class="img_box"><img src="./img/img1/thumb_image_large.jpg" alt=""></div>
+                            <div class="info">
+                                <span class="category">산악스키</span>
+                                <p class="title">오스트리아 최대의 산악스키 연맹, 산악스키 아마데! 5개 지역에 걸쳐있고, 총 25여개의 슬로프 길이</p>
+                            </div>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+```
+- 부모 요소를 선택하지 않아도 될 경우라도 선택자에 부모 요소를 선택하는 것이 나중을 위해 좋다.
+    - 중복 선택 방지
+    - ex)
+    ```css
+    .main_wrap {
+        background-color: #ececec;
+    }
+
+    .main_wrap .content {
+    ...
+    }
+    ```
+- `<a>`태그는 블록요소의 자식을 갖고있다면 반드시 `display:block`으로 최대 영역을 설정해준다.
+- `font-size`를 지정할 때에는 font가 가지고 있는 높이보다 2~4px 정도 더해 `line-height`를 적용시켜주는 것이 좋다.
+- 썸네일 위에 무언가 얹히고 싶을 때
+    - 부모 : `position: relative`, 자식: `position: absolute` 후 자식요소의 위치 지정(top,left,right,bottom)
+
+#### 서브 리스트 제작하기
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        @charset "UTF-8";
+
+        /* 기본 스타일 */
+        body {
+            font-family: Dotum, '돋움', Helvetica, sans-serif;
+            font-size: 15px;
+            line-height: 18px;
+            color: #3c3c3c;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            vertical-align: top;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        h1 {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+            font-size: 26px;
+            line-height: 38px;
+            color: #000;
+        }
+
+        .main_wrap {
+            background-color: #ececec;
+        }
+
+        .main_wrap .content {
+            position: relative;
+            width: 1000px;
+            margin: 0 auto;
+            padding: 50px 0 20px;
+        }
+
+        .main_wrap .noti_txt {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            font-size: 12px;
+            color: #7c7c7c;
+        }
+
+        .main_list li {
+            float: left;
+        }
+
+        .main_list::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        .main_list li+li {
+            margin-left: 17px;
+        }
+
+        .main_list .item_link {
+            position: relative;
+            display: block;
+        }
+
+        .main_list .img_box img {
+            width: 322px;
+            height: 215px;
+        }
+
+        .main_list .img_box {
+            position: relative;
+        }
+
+        .main_list .img_box:after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .main_list .info {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            left: 15px;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .main_list .category {
+            font-size: 14px;
+            line-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .main_list .title {
+            margin-top: 3px;
+            font-size: 18px;
+            line-height: 22px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sub_wrap {
+            margin-top: 30px;
+        }
+
+        .sub_list {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sub_list .item_link img {
+            width: 188px;
+            height: 141px;
+        }
+
+        .sub_list li {
+            float: left;
+            width: 188px;
+            /* 말줄임때 필요한 너비 크기*/
+            margin-bottom: 40px;
+        }
+
+        .sub_list::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        .sub_list li+li {
+            margin-left: 15px;
+        }
+
+        .sub_list li:nth-child(5n+1) {
+            /* 반복에 유용하다. */
+            margin-left: 0;
+        }
+
+        .sub_list .item_link {
+            display: block;
+            position: relative;
+        }
+
+        .sub_list .item_link::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .sub_list .info{
+            height: 79px;
+            margin-top:10px;
+            padding: 5px;
+        }
+
+        .sub_list .title{/* 두줄 말줄임은 한줄 말줄임과 다르게 webkit 관련 스타일들이 선언되어야 한다.*/
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            font-size:15px;
+            line-height: 18px;
+            color: #090909;
+        }
+        .sub_list .category_link{
+            display:block;
+            overflow:hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-top:3px;
+            font-size:12px;
+            line-height: 15px;
+            color:#7ba7df;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>TOP100</h1>
+        <div class="main_wrap">
+            <div class="content">
+                <p class="noti_txt">8.21 오전 9시 ~ 오전 10시 기준 (재생수, 재생시간, 좋아요)</p>
+                <ol class="main_list">
+                    ... 
+                </ol>
+
+                <div class="sub_wrap">
+                    <ol class="sub_list">
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤마라톤마라톤마라톤마라톤마라톤마라톤마라톤마라톤마라톤마라톤    </a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="item_link">
+                                <img src="./img/img1/thumb_image.jpg" alt="">
+                            </a>
+                            <div class="info">
+                                <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고 있는
+                                    대구국제마라톤대회!</a>
+                                <a href="#" class="category_link">마라톤</a>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+```
+- 섬네일 밑에 있는 텍스트가 부모구조의 너비를 알고 있어야 말줄임을 할 수 있으므로 서브리스트(`.sub_list li`)의 너비를 사진과 똑같이 해준다.
+- `nth-child(an+b)` : 반복된 요소에 스타일을 적용시킬 때 유용하다.
+- 두줄 말줄임은 한줄 말줄임과 다르게 webkit 관련 스타일들이 선언되어야 한다.
+
+#### 정리
+- 한줄 말줄임 : text-overflow, overflow, white-space
+- 두줄 말줄임 : -webkit-box, -webkit-box-orient, -webkit-line-clamp , IE나 FireFox 계열의 경우 height, max-height으로 대응되게 만들어주어야한다. 
