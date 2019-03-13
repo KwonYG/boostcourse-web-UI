@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        @charset "UTF-8";
+
+        /* 기본 스타일 */
+        body {
+            font-family: Dotum, '돋움', Helvetica, sans-serif;
+            font-size: 15px;
+            line-height: 18px;
+            color: #3c3c3c;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            vertical-align: top;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        h1 {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+            font-size: 26px;
+            line-height: 38px;
+            color: #000;
+        }
+
+        .blind {
+            /* blind 처리 */
+            overflow: hidden;
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+        }
+
+        .main_wrap {
+            background-color: #ececec;
+        }
+
+        .main_wrap .content {
+            position: relative;
+            width: 1000px;
+            margin: 0 auto;
+            padding: 50px 0 20px;
+        }
+
+        .main_wrap .noti_txt {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            font-size: 12px;
+            color: #7c7c7c;
+        }
+
+        .main_list li {
+            float: left;
+        }
+
+        .main_list::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        .main_list li+li {
+            margin-left: 17px;
+        }
+
+        .main_list .item_link {
+            position: relative;
+            display: block;
+        }
+
+        .main_list .img_box img {
+            width: 322px;
+            height: 215px;
+        }
+
+        .main_list .img_box {
+            position: relative;
+        }
+
+        .main_list .img_box:after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .main_list .info_wrap {
+            /* 기존에 있던 .main_list .info의 코드를 그대로 사용*/
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            left: 15px;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .main_list .info {
+            /* 기존의 속성들은 .info_wrap 으로...*/
+            margin-left: 40px;
+        }
+
+        .main_list .rank {
+            position: absolute;
+            top: -5px;
+            text-align: center;
+        }
+
+        .main_list .rank .num {
+            display: block;
+            font-size: 40px;
+            line-height: 42px;
+        }
+
+        .main_list .rank .change {
+            display: block;
+            margin-top: 11px;
+        }
+
+        .main_list .rank .change::before {
+            /* 순위 상승, 하락 마크*/
+            display: inline-block;
+            content: '';
+            margin-right: 3px;
+        }
+
+        .rank .up::before {
+            /* .main_list를 넣지 않은 이유 : 서브 리스트에도 적용될 수 있게 하기 위해(재사용성 ↑)*/
+            width: 7px;
+            height: 10px;
+            background: url(./img2/rank_up.png) no-repeat;
+        }
+
+        .rank .down::before {
+            width: 7px;
+            height: 10px;
+            background: url(./img2/rank_down.png) no-repeat;
+        }
+
+        .rank .keep::before {
+            width: 8px;
+            height: 2px;
+            padding-bottom: 4px;
+            background: url(./img2/rank_keep.png) no-repeat;
+        }
+
+        .rank .up {
+            color: #f82850;
+        }
+
+        .rank .down {
+            color: #1996ff;
+        }
+
+        .main_list .category {
+            font-size: 14px;
+            line-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .main_list .like {
+            /* 좋아요 수*/
+            position: relative;
+            display: block;
+            margin-top: 5px;
+            padding-left: 18px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .main_list .like::before {
+            /* 좋아요 마크 */
+            position: absolute;
+            top: 3px;
+            left: 0;
+            content: '';
+            width: 14px;
+            height: 15px;
+            background: url(./img2/like_large.png) no-repeat;
+        }
+
+        .main_list .title {
+            margin-top: 3px;
+            font-size: 18px;
+            line-height: 22px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sub_wrap {
+            margin-top: 30px;
+        }
+
+        .sub_list {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sub_list .item_link img {
+            width: 188px;
+            height: 141px;
+        }
+
+        .sub_list li {
+            float: left;
+            width: 188px;
+            /* 말줄임때 필요한 너비 크기*/
+            margin-bottom: 40px;
+        }
+
+        .sub_list::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        .sub_list li+li {
+            margin-left: 15px;
+        }
+
+        .sub_list li:nth-child(5n+1) {
+            /* 반복에 유용하다. */
+            margin-left: 0;
+        }
+
+        .sub_list .img_wrap{
+            display:block;
+            position: relative;
+        }
+
+        .sub_list .time{
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            height: 18px;
+            padding: 0 7px;
+            font-size: 11px;
+            color: #fff;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .sub_list .watch_later_link{
+            display:none;
+            position: absolute;
+            right:4px;
+            bottom:3px;
+            width:45px;
+            height:45px;
+            background: url(./img2/later_watch.png) no-repeat;
+        }
+
+        .sub_list .img_wrap:hover .watch_later_link{ /* .img_wrap에 마우스 오버가 되면 .watch_later_link에... */
+            display:block;
+        }
+
+        .sub_list .img_wrap:hover .time{ /* .img_wrap에 마우스 오버가 되면 .time에... */
+            display:none;
+        }
+
+        .sub_list .item_link {
+            display: block;
+            position: relative;
+        }
+
+        .sub_list .item_link::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .sub_list .info {
+            height: 79px;
+            margin-left: 30px;
+        }
+
+        .sub_list .info_wrap {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .sub_list .title {
+            /* 두줄 말줄임은 한줄 말줄임과 다르게 webkit 관련 스타일들이 선언되어야 한다.*/
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            font-size: 15px;
+            line-height: 18px;
+            color: #090909;
+        }
+
+        .sub_list .category_link {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-top: 3px;
+            font-size: 12px;
+            line-height: 15px;
+            color: #7ba7df;
+        }
+
+        .sub_list .rank {
+            position: absolute;
+            top: 0;
+            bottom: 1px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sub_list .rank .num {
+            display: block;
+            font-size: 22px;
+            line-height: 24px;
+        }
+
+        .sub_list .rank .change {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .sub_list .rank .change::before {
+            display: inline-block;
+            content: '';
+            margin-right: 3px;
+        }
+
+        .sub_list .like {
+            position: absolute;
+            bottom: 0;
+            padding-left: 18px;
+            /* 하트 아이콘 자리*/
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .sub_list .like::before {
+            position: absolute;
+            top: 6px;
+            left: 0;
+            content: '';
+            width: 11px;
+            height: 10px;
+            background: url(./img2/like.png) no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>TOP100</h1>
+        <div class="main_wrap">
+            <div class="content">
+                <p class="noti_txt">8.21 오전 9시 ~ 오전 10시 기준 (재생수, 재생시간, 좋아요)</p>
+                <ol class="main_list">
+                    <li>
+                        <a href="#" class="item_link">
+                            <div class="img_box"><img src="./img/img1/thumb_image_large.jpg" alt=""></div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>1</span>
+                                    <span class="change up">3<span class="blind">위 상승</span></span>
+                                </div>
+                                <div class="info">
+                                    <span class="category">산악스키</span>
+                                    <p class="title">오스트리아 최대의 산악스키 연맹, 산악스키 아마데! 5개 지역에 걸쳐있고, 총 25여개의 슬로프 길이</p>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item_link">
+                            <div class="img_box"><img src="./img/img1/thumb_image_large.jpg" alt=""></div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>2</span>
+                                    <span class="change down">3<span class="blind">위 하락</span></span>
+                                </div>
+                                <div class="info">
+                                    <span class="category">산악스키</span>
+                                    <p class="title">오스트리아 최대의 산악스키 연맹, 산악스키 아마데! 5개 지역에 걸쳐있고, 총 25여개의 슬로프 길이</p>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="item_link">
+                            <div class="img_box"><img src="./img/img1/thumb_image_large.jpg" alt=""></div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <span class="category">산악스키</span>
+                                    <p class="title">오스트리아 최대의 산악스키 연맹, 산악스키 아마데! 5개 지역에 걸쳐있고, 총 25여개의 슬로프 길이</p>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ol>
+
+                <div class="sub_wrap">
+                    <ol class="sub_list">
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>1</span>
+                                    <span class="change up">3<span class="blind">위 상승</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>2</span>
+                                    <span class="change down">3<span class="blind">위 하락</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <a href="" class="item_link">
+                                    <img src="./img/img1/thumb_image.jpg" alt="">
+                                    <span class="time"><span class="blind">재생시간</span>99:99</span>
+                                </a>
+                                <a href="#" class="watch_later_link"><span class="blind">나중에 보기</span></a>
+                            </div>
+                            <div class="info_wrap">
+                                <div class="rank">
+                                    <span class="num"><span class="blind">랭킹</span>3</span>
+                                    <span class="change keep"><span class="blind">유지</span></span>
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">국제육상경기연맹으로부터 라벨을 부여받은 국내의 단 두 개의 마라톤 대회 중 실버라벨을 5년 연속 유지하고
+                                        있는
+                                        대구국제마라톤대회!</a>
+                                    <a href="#" class="category_link">마라톤</a>
+                                    <span class="like"><span class="blind">좋아요</span>99,999</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

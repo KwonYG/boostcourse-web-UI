@@ -833,3 +833,124 @@ p {
 #### 정리
 - 한줄 말줄임 : text-overflow, overflow, white-space
 - 두줄 말줄임 : -webkit-box, -webkit-box-orient, -webkit-line-clamp , IE나 FireFox 계열의 경우 height, max-height으로 대응되게 만들어주어야한다. 
+
+---
+
+### 3) 이미지 목록 추가 기능 제작
+
+#### 1.아이콘 상태 변경
+[codepen 바로가기](https://codepen.io/hoonJJang/pen/XPbEKY)
+```css
+.change {
+  float: left;
+  padding: 10px;
+  text-align: center;
+}
+.change:after {
+  display: block;
+  width: 100px;
+  height: 100px;
+  content: '';
+  border: 1px solid gray;
+  background-color: pink;
+}
+.up:after {
+  background: url(https://image.flaticon.com/icons/png/512/187/187142.png) no-repeat;
+  background-size: cover;
+}
+.down:after {
+  background: url(https://image.flaticon.com/icons/png/512/187/187154.png) no-repeat;
+  background-size: cover;
+}
+/* IR(*Image Replacement) 처리 */
+.blind {
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+```
+```html
+<div class="change"><span class="blind">첫째</span></div>
+<div class="change up"><span class="blind">둘째</span></div>
+<div class="change down"><span class="blind">셋째</span></div>
+```
+- span에 blind 클래스를 넣어 텍스트가 노출되지 않게 하였다. (왜 이렇게 하는지는 `blind` 클래스를 지워보면 이해가 간다.)
+
+#### 2. 마우스 오버 시 버튼 노출
+
+[codepen 바로가기](https://codepen.io/hoonJJang/pen/rZVdpZ)
+```css
+.box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.box + .box {
+  margin-top: 30px;
+}
+.img_link {
+  position: relative;
+  display: inline-block; /* a 태그는 기본적으로 inline, 부모요소 전체를 차지해야하기 때문에 inline-block 선언*/
+  width: 100px;
+  height: 100px;
+}
+.alert {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 18px;  
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.del_link {
+  display: none; /* 마우스 오버 되었을때만 나타나야 하므로 기본적으론 none*/
+  position: absolute;
+  top:0;
+  right: 0;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.5); /* x 박스 배경 반투명*/
+}
+.test1 .img_link:hover + .del_link {
+	display: block;
+}
+.test2:hover > .del_link { /* del_link에 마우스를 올리면 display:block 이 풀리게 된다. 그래서 부모요소에도 :hover를 적용시킨다.*/
+	display: block;
+}
+```
+```html
+<div class="box test1">
+  <a href="#" class="img_link">
+    <img src="https://image.flaticon.com/icons/png/512/124/124027.png" width="100" height="100" alt="">
+    <span class="alert">99</span>
+  </a>
+  <a href="#" class="del_link">x</a>
+</div>
+
+<div class="box test2">
+  <a href="#" class="img_link">
+    <img src="https://image.flaticon.com/icons/png/512/124/124027.png" width="100" height="100" alt="">
+    <span class="alert">99</span>
+  </a>
+  <a href="#" class="del_link">x</a>
+</div>
+```
+- `.del_link`의 `hover` 처리 주석 자세히 보기
+
+#### 제작하기 - 1
+
+코드 : /3-3(이미지 목록 추가 기능).html
+
+- `<span class="blind">` 로 감싸여진 부분은 웹 접근성을 위해 추가된 태그이다.
+- `blind 클래스`의 css 처리는 구글에서 찾아볼 수 있다.
+
+#### 제작하기 - 2
+- 마우스 오버시 재생시간 및 나중에 보기 버튼
+---
