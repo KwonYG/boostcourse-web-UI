@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .blind{
+            position: absolute;
+            clip:rect(0,0,0,0);
+            width:1px;
+            height:1px;
+            margin:-1px;
+            overflow: hidden;
+        }
+        table,
+        th{
+            border: 1px solid #eaedef;
+            border-collapse: collapse;
+        }
+
+        td{ /*today 경계선이 잘 나오게 하기 위해 따로 처리*/
+            border-top:1px solid #eaedef;
+            border-left:1px solid #eaedef;
+        }
+
+        table {
+            width: 590px;
+            table-layout: fixed;
+        }
+
+        th {
+            height: 25px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .inner {
+            position:relative;
+            /*콘텐츠 내용이 있는 셀(국군의날, 개천절 등)이기 때문에 inner에다가 height 부여*/
+            height: 70px;
+            /*box-sizing을 사용하면 80px로 하여도 된다.*/
+            padding: 5px;
+
+        }
+
+        .date {
+            font-weight: bold;
+        }
+
+        .text {
+            display: block;
+            /*줄바꿈*/
+            margin-top: 3px;
+            font-style: normal;
+
+            /*말줄임 속성*/
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .date.dimmed{
+            color:#e7e7e7;
+        }
+
+        .date.holiday{
+            color: #f44e4e;
+        }
+
+        .text.holiday{
+            color: #f44e4e;
+        }
+
+        .text.anniversary{
+            color:#00c;
+        }
+
+        .lunar{
+            position:absolute;
+            top:6px;
+            right:6px;
+            font-size: 11px;
+            color:#bababa;
+        }
+
+        .today{/*border가 병합이 되어있어 border 속성만 부여하면 경계선이 다 나오지 않는다. td 선택자 확인*/
+            border: 1px solid #e0e0bf; /*red로 고쳐보고 확인하기*/
+            background: #ffffd9;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+
+        <caption>달력</caption>
+        <thead>
+            <tr>
+                <th class="col">일</th>
+                <th class="col">월</th>
+                <th class="col">화</th>
+                <th class="col">수</th>
+                <th class="col">목</th>
+                <th class="col">금</th>
+                <th class="col">토</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="inner"><span class="date dimmed">30</span></div>
+
+                </td>
+                <td>
+                    <div class="inner"><span class="date">1</span>
+                        <em class="text anniversary">국군의 날</em>
+                    </div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">2</span></div>
+                </td>
+                <td>
+                    <div class="inner">
+                        <span class="date holiday">3</span>
+                        <em class="text holiday">개천절</em>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="inner"><span class="date">4</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">5</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">6</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inner"><span class="date">7</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">8</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date holiday">9</span>
+                        <em class="text holiday">한글날</em>
+                        <span class="lunar">음 9.1</span></div>
+
+                </td>
+                <td class="today">
+                    <div class="inner"><span class="date">10</span><strong class="blind">오늘</strong></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">11</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">12</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">13</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inner"><span class="date">14</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">15</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">16</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">17</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">18</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">19</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">20</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inner"><span class="date">21</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">22</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">23</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">24</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">25</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">26</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">27</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inner"><span class="date">28</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">29</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">30</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date">31</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date dimmed">1</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date dimmed">2</span></div>
+                </td>
+                <td>
+                    <div class="inner"><span class="date dimmed">3</span></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

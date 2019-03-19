@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://programmers.co.kr/tryouts/3929/challenges/11617?language=java -->
+<html lang="ko" xml:lang="ko" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>프로그래머스</title>
+<link rel="shortcut icon" type="image/x-icon" href="https://programmers.co.kr/assets/icons/favicon-40b78633b6556a68c3da8e2125c31512fbd01d09906ab76c8a8ff289e494cadb.png">
+<link rel="apple-touch-icon" type="image/png" href="https://programmers.co.kr/assets/icons/apple-icon-6eafc2c4c58a21aef692d6e44ce99d41f999c71789f277317532d0a9c6db8976.png">
+<meta name="description" content="성장하는 개발자를 위한 프로그래머스에서는 최신 개발자 채용정보, 코딩테스트 연습, 코드리뷰 기반 온라인 스터디와 부트캠프를 만날 수 있습니다.">
+<meta name="keywords" content="코딩 교육, 코딩, 프로그래밍, 실습, 생활코딩, 알고리즘">
+<meta property="fb:app_id" content="339079816467879">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="프로그래머스">
+<meta name="twitter:description" property="og:description" itemprop="description" content="성장하는 개발자를 위한 프로그래머스에서는 최신 개발자 채용정보, 코딩테스트 연습, 코드리뷰 기반 온라인 스터디와 부트캠프를 만날 수 있습니다.">
+<meta name="twitter:image" property="og:image" itemprop="image primaryImageOfPage" content="https://programmers.co.kr/assets/img-meta-programmers-c4442532396affc7fdb576c46ed7cb0540f48cf846e853f173b212faa1d26fad.png">
+<meta name="twitter:url" property="og:url" content="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="프로그래머스">
+<meta name="twitter:card" content="summary">
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="gC5xLkZZJ6NB6Q9fXkCDVoQVfTFF9JgJlthz6kAliC4E6Pwx0MsL84uBQcU+LiI8c1fkFXQXfn9vXE7ilQ6jSA==">
+<meta name="action-cable-url" content="wss://programmers.co.kr:8080/cable">
+
+<link rel="stylesheet" media="all" href="./프로그래머스_files/application-4dd2d642ba9b70dc8d342137d8fb01813eace7827a823c959a39cfe9957711e1.css">
+
+
+  <!-- Google Analytics -->
+<script async="" src="./프로그래머스_files/gtm.js.다운로드"></script><script async="" src="./프로그래머스_files/fbevents.js.다운로드"></script><script async="" src="./프로그래머스_files/analytics.js.다운로드"></script><script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-72680702-5', 'auto', {allowLinker: true, userId: 'Guest-8097238'});
+  ga('linker:autoLink', ['programmers.co.kr', 'www.programmers.co.kr', 'business.programmers.co.kr']);
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+  <!-- Facebook Pixel Code -->
+<script>
+  !function (f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+    n = f.fbq = function () {
+      n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = !0;
+    n.version = '2.0';
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = !0;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s)
+  }(window, document, 'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2050250308523590');
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2050250308523590&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+  <!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+  w[l] = w[l] || [];
+  w[l].push({
+    'gtm.start':
+      new Date().getTime(), event: 'gtm.js'
+  });
+  var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+  j.async = true;
+  j.src =
+    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+  f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-NMDXJHR');</script>
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMDXJHR"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager -->
+
+  <script async="" src="./프로그래머스_files/f.txt"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3622640291758278",
+        enable_page_level_ads: true
+    });
+</script>
+
+
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">.cloudinary-thumbnails { list-style: none; margin: 10px 0; padding: 0 } .cloudinary-thumbnails:after { clear: both; display: block; content: '' } .cloudinary-thumbnail { float: left; padding: 0; margin: 0 15px 5px 0; display: none } .cloudinary-thumbnail.active { display: block } .cloudinary-thumbnail img { border: 1px solid #01304d; border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px } .cloudinary-thumbnail span { font-size: 11px; font-family: Arial, sans-serif; line-height: 14px; border: 1px solid #aaa; max-width: 150px; word-wrap: break-word; word-break: break-all; display: inline-block; padding: 3px; max-height: 60px; overflow: hidden; color: #999; } .cloudinary-delete { vertical-align: top; font-size: 13px; text-decoration: none; padding-left: 2px; line-height: 8px; font-family: Arial, sans-serif; color: #01304d }.cloudinary-button { color: #fefeff; text-decoration: none; font-size: 18px; line-height: 28px; height: 28x; border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; font-weight: normal; text-decoration: none;   display: inline-block; padding: 4px 30px 4px 30px; background: #0284cf; font-family: Helvetica, Arial, sans-serif;   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAyODRjZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMjU5OGIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);   background: -moz-linear-gradient(top,  #0284cf 0%, #02598b 100%);   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0284cf), color-stop(100%,#02598b));   background: -webkit-linear-gradient(top,  #0284cf 0%,#02598b 100%);   background: -o-linear-gradient(top,  #0284cf 0%,#02598b 100%);   background: -ms-linear-gradient(top,  #0284cf 0%,#02598b 100%);   background: linear-gradient(to bottom,  #0284cf 0%,#02598b 100%);   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0284cf', endColorstr='#02598b',GradientType=0 ); }.cloudinary-button:hover { background: #02598b;   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAyNTk4YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMjg0Y2YiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);   background: -moz-linear-gradient(top,  #02598b 0%, #0284cf 100%);   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#02598b), color-stop(100%,#0284cf));   background: -webkit-linear-gradient(top,  #02598b 0%,#0284cf 100%);   background: -o-linear-gradient(top,  #02598b 0%,#0284cf 100%);   background: -ms-linear-gradient(top,  #02598b 0%,#0284cf 100%);   background: linear-gradient(to bottom,  #02598b 0%,#0284cf 100%);   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#02598b', endColorstr='#0284cf',GradientType=0 ); </style></head>
+<body class="tryout-challenges tryout-challenges-show" data-ns="" data-controller="tryout_challenges" data-action="show" data-defaultlocale="ko" data-locale="ko">
+
+
+<div class="main theme-dark">
+  
+<header class="intro__wizard-steps">
+  <div class="wizard-steps step-second">
+    <div class="left">
+      <ul class="list-intro">
+        <li>
+          <svg class="ic-14"><use xlink:href="/assets/svg-defs-2ac53da5a48ff66d845ffc59fb96bd0d6c455568b2e704e76e6dc6de7002c043.svg#ic-added-circle-14"></use></svg>
+          2019-1H LINE Developer Newbie
+        </li>
+        <li>
+          <svg class="ic-14"><use xlink:href="/assets/svg-defs-2ac53da5a48ff66d845ffc59fb96bd0d6c455568b2e704e76e6dc6de7002c043.svg#ic-creator-14"></use></svg>
+          권영근
+        </li>
+        <li>
+          <svg class="ic-14"><use xlink:href="/assets/svg-defs-2ac53da5a48ff66d845ffc59fb96bd0d6c455568b2e704e76e6dc6de7002c043.svg#ic-time-14"></use></svg>
+          180 분, 5 문제
+        </li>
+      </ul>
+    </div>
+
+    <div class="center">
+      <table class="wizard--table">
+        <tbody>
+        <tr>
+          <td class="td-step-first"><span class="point-step"></span></td>
+            <td class="td-step-second"><span class="point-step"></span></td>
+          <td class="td-step-third"><span class="point-step"></span></td>
+        </tr>
+        <tr>
+          <td class="td-first">테스트 안내</td>
+            <td class="td-second">데모 테스트</td>
+          <td class="td-third">테스트 시작</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="right">
+      <div class="wizard-buttons-warp">
+  <a class="btn btn-dark btn-prev" id="back-to-intro" href="https://programmers.co.kr/tryouts/8322/intro?token=3640fd476fd2c9627d63066a0c9314fe">〈 테스트 안내</a><a class="btn btn-warning btn-next btn-before-start disabled" data-token="3640fd476fd2c9627d63066a0c9314fe" data-remaining-time-in-ms="61441428" data-tryout-id="8322" href="javascript:void(0)"><span class="remain-time">17시간 후에</span><span> 시작</span></a>
+</div>
+
+    </div>
+  </div>
+</header>
+
+
+
+
+
+<div class="topbar-wrap">
+  <div class="topbar flex-space-between">
+    <div class="col-flex flex-center">
+      <ul class="nav navbar-nav">
+        <li><a class="disabled" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java#">데모 테스트</a></li>
+      </ul>
+    </div>
+    <div class="col-flex flex-center right-menu">
+      <ul class="nav navbar-nav">
+          <li><a onclick="Hera.tryoutChallenges.challengeable.startTour(true)" id="help" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java#">도움말</a></li>
+            <li><a target="_blank" href="https://devdocs.programmers.co.kr/references/java/docs/api/index.html?overview-summary.html">Java 레퍼런스</a></li>
+          <li><a data-remote="true" href="https://programmers.co.kr/compile_options">컴파일 옵션</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<ul class="challenge-nav nav nav-tabs nav-tabs-dark task-tab" id="tab" role="tablist">
+    <li class="challenge-item nav-item" id="tour1">
+      <a class="challenge-nav-link " href="https://programmers.co.kr/tryouts/3929/challenges/11616?language=java">
+        <div class="challenge-panel">
+          <svg id="checkbox-algorithm-316" class="outline-box"><use xlink:href="/assets/svg-defs-2ac53da5a48ff66d845ffc59fb96bd0d6c455568b2e704e76e6dc6de7002c043.svg#ic-check-box-outline"></use></svg>
+
+          <div class="info">
+            <div class="title">프로그래밍1</div>
+          </div>
+        </div>
+</a>    </li>
+    <li class="challenge-item nav-item" id="">
+      <a class="challenge-nav-link active" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java">
+        <div class="challenge-panel">
+          <svg id="checkbox-algorithm-1988" class="outline-box"><use xlink:href="/assets/svg-defs-2ac53da5a48ff66d845ffc59fb96bd0d6c455568b2e704e76e6dc6de7002c043.svg#ic-check-box-outline"></use></svg>
+
+          <div class="info">
+            <div class="title">프로그래밍2</div>
+          </div>
+        </div>
+</a>    </li>
+
+  
+<li class="challenge-settings nav-item pull-right">
+  <div class="btn-group-theme btn-group" data-toggle="buttons">
+      <label class="btn btn-md btn-dark-outline active">
+        <input type="radio" name="themes" autocomplete="off" checked="" data-toggle="button" data-theme="dark">dark
+      </label>
+      <label class="btn btn-md btn-dark-outline ">
+        <input type="radio" name="themes" autocomplete="off" data-toggle="button" data-theme="light">light
+      </label>
+  </div>
+
+    <div data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="코드 에디터의 단축키를 설정하는 옵션입니다. 선호하는 에디터 옵션이 없다면 sublime을 선택해 주세요." data-original-title="" title="">
+      <div class="btn-group-keymap btn-group" data-toggle="buttons">
+          <label class="btn btn-md btn-dark-outline active">
+            <input type="radio" name="keymaps" autocomplete="off" checked="" data-keymap="sublime">sublime
+          </label>
+          <label class="btn btn-md btn-dark-outline ">
+            <input type="radio" name="keymaps" autocomplete="off" data-keymap="vim">vim
+          </label>
+          <label class="btn btn-md btn-dark-outline ">
+            <input type="radio" name="keymaps" autocomplete="off" data-keymap="emacs">emacs
+          </label>
+      </div>
+    </div>
+
+    <div class="dropdown-language animated-dropdown" id="tour7">
+      <button class="btn btn-md btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+        Java
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <li>
+            <a class="dropdown-item" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=cpp">C++</a>
+            <a class="dropdown-item" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java">Java</a>
+            <a class="dropdown-item" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=javascript">JavaScript</a>
+            <a class="dropdown-item" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=python3">Python3</a>
+        </li>
+      </ul>
+    </div>
+</li>
+
+</ul>
+
+<div class="demo">
+    <div class="challenge-content " data-tryout-token-id="269798" data-tryout-id="3929" data-tryout-category="demo" data-interact-mode="saving_only" data-challengeable-type="algorithm" data-challengeable-id="1988" data-algorithm-type="standard" data-language="java" data-tour-mode="general" data-clipboard-restricted="false">
+      
+
+
+<div class="main-section">
+  <div class="guide-section" id="tour2" style="width: calc(40% - 12px);">
+    <h6 class="guide-section-title">문제 설명</h6>
+    <div class="markdown solarized-dark"><p>이 문제에는 표준 입력으로 두 개의 정수 n과 m이 주어집니다.<br>
+별(*) 문자를 이용해 가로의 길이가 n, 세로의 길이가 m인 직사각형 형태를 출력해보세요.</p>
+
+<hr>
+
+<h5>제한 조건</h5>
+
+<ul>
+<li>n과 m은 각각 1000 이하인 자연수입니다.</li>
+</ul>
+
+<hr>
+
+<h5>예시</h5>
+
+<p>입력</p>
+<div class="highlight"><pre class="codehilite"><code>5 3
+</code></pre></div>
+<p>출력</p>
+<div class="highlight"><pre class="codehilite"><code>*****
+*****
+*****
+</code></pre></div></div>
+  </div>
+  <div class="gutter gutter-horizontal" style="width: 24px;"></div><div class="run-section" style="width: calc(60% - 12px);">
+    <div id="tour3" class="code-section" onkeyup="Hera.tryoutChallenges.resizeEditor(this);" style="height: calc(60% - 7px);">
+      <div class="editor">
+        <ul class="nav nav-pills editor-nav-pills tap-form">
+    <input type="hidden" name="initial_code_5756" id="initial_code_5756" value="import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        System.out.println(a + b);
+    }
+}">
+    <input id="5756" data-type="code" data-language="java" type="hidden" value="import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        System.out.println(a + b);
+    }
+}">
+    <li class="nav-item">
+      <a href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java#" class="btn-tab nav-link active" data-id="5756" data-language="java">
+        Solution.java </a>
+    </li>
+</ul>
+        
+          <textarea hidden="" id="code" name="code" style="display: none;">import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        System.out.println(a + b);
+    }
+}</textarea><div class="CodeMirror cm-s-tomorrow-night-bright CodeMirror-wrap CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 290px; left: 162px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 393px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 48px; margin-bottom: -8px; border-right-width: 22px; min-height: 368px; padding-right: 8px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 114px; top: 264px; height: 24px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div class="" style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-variable">java</span>.<span class="cm-variable">util</span>.<span class="cm-variable">Scanner</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">class</span> <span class="cm-def">Solution</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-keyword">static</span> <span class="cm-type">void</span> <span class="cm-variable">main</span>(<span class="cm-type">String</span>[] <span class="cm-variable">args</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">Scanner</span> <span class="cm-variable">sc</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">Scanner</span>(<span class="cm-variable">System</span>.<span class="cm-variable">in</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-type">int</span> <span class="cm-variable">a</span> <span class="cm-operator">=</span> <span class="cm-variable">sc</span>.<span class="cm-variable">nextInt</span>();</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-type">int</span> <span class="cm-variable">b</span> <span class="cm-operator">=</span> <span class="cm-variable">sc</span>.<span class="cm-variable">nextInt</span>();</span></pre></div><div style="position: relative;" class=""><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">for</span>(<span class="cm-type">int</span> <span class="cm-variable">i</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>; <span class="cm-variable">i</span> <span class="cm-operator">&lt;</span> <span class="cm-variable">b</span>; <span class="cm-variable">i</span><span class="cm-operator">++</span>){</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">for</span>(<span class="cm-type">int</span> <span class="cm-variable">j</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>; <span class="cm-variable">j</span> <span class="cm-operator">&lt;</span> <span class="cm-variable">a</span>; <span class="cm-variable">j</span><span class="cm-operator">++</span>)<span class=" CodeMirror-matchingbracket">{</span></span></pre></div><div class="" style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">System</span>.<span class="cm-variable">out</span>.<span class="cm-variable">println</span>(<span class="cm-string">"*"</span>);</span></pre></div><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -48px; width: 48px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class=" CodeMirror-matchingbracket">}</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -48px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 22px; width: 1px; border-bottom: 0px solid transparent; top: 368px;"></div><div class="CodeMirror-gutters" style="height: 390px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 48px;"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="gutter gutter-vertical" style="height: 14px;"></div><div class="output-section" id="tour6" style="height: calc(40% - 7px);">
+      <div class="tab-header">
+        <div id="output-title" class="output-title" data-toggle="tab">
+          실행 결과 &nbsp;&nbsp;&nbsp;
+            <a id="stop-button" class="btn btn-sm btn-danger" href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java#">실행 중지</a>
+          <span id="output-spinner" class="spinner hidden">
+            <span class="bounce1"></span>
+            <span class="bounce2"></span>
+            <span class="bounce3"></span>
+          </span>
+        </div>
+      </div>
+      <div class="console tab-content">
+        <div id="output" class="console-output tab-pane fade in active">
+          실행 결과가 여기에 표시됩니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="button-section">
+  <div class="testcase-button">
+        <a class="btn btn-dark btn-block" data-remote="true" href="https://programmers.co.kr/challenge_algorithms/1988/custom_testcases?tryout_id=3929">
+            <div class="flex-normal flex-space-between">
+              테스트 케이스 추가하기<svg class=""><use xlink:href="/assets/svg-defs-2ac53da5a48ff66d845ffc59fb96bd0d6c455568b2e704e76e6dc6de7002c043.svg#ic-add"></use></svg>
+            </div>
+</a>  </div>
+
+  <div class="func-buttons">
+    <a id="tour8" class="btn btn-dark" data-remote="true" href="https://programmers.co.kr/tryouts/3929/submissions">저장 기록</a>
+
+    <a id="reset-code" class="btn btn-dark" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="에디터의 코드가 초기화됩니다. 초기화 버튼을 누르기 이전 코드 복원하려면 코드 에디터에 커서를 두고 Ctrl-Z를 눌러 보세요." href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java#" data-original-title="" title="">코드 초기화</a>
+
+      <div id="tour4">
+        <a id="run-code" class="btn btn-dark" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="기본 테스트 케이스가 정상 동작하는지 확인합니다. [테스트 케이스 추가하기]를 눌러서 수행할 테스트를 수정할 수 있습니다." href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java#" data-original-title="" title="">실행</a>
+      </div>
+
+    <div id="tour5">
+        <a id="save-code" class="btn btn-primary" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="코드를 저장합니다. 마지막 저장된 코드는 테스트 종료 시 최종 제출됩니다." href="https://programmers.co.kr/tryouts/3929/challenges/11617?language=java#" data-original-title="" title="">코드 저장</a>
+    </div>
+
+    
+
+  </div>
+</div>
+
+
+
+    </div>
+
+    <div class="alert-demo">
+      <div class="left">
+        <svg class="ic-48 ic-white"><use xlink:href="/assets/svg-defs-2ac53da5a48ff66d845ffc59fb96bd0d6c455568b2e704e76e6dc6de7002c043.svg#ic-info"></use></svg>
+      </div>
+      <div class="right">
+        <h6 class="title-text">실제 테스트가 아닌 데모 화면입니다.</h6>
+        <h5 class="body-text">이 페이지에서 테스트 환경을 충분히 숙지하신 후, 우측 상단에 있는 테스트 시작 버튼을 클릭하여 테스트를 시작하세요.</h5>
+      </div>
+    </div>
+</div>
+
+<div class="container error--device-mobile">
+  <h1 class="emoticon">:-(</h1>
+  <h1 class="body">
+    코딩 테스트는 최소 992px 이상의 넓은 모니터에서 적합합니다. 더 넓은 화면의 기기에서 다시 접근해 주세요.
+  </h1>
+</div>
+
+</div>
+
+
+
+<div class="modal fade" id="modal-dialog" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+<script src="./프로그래머스_files/application-04eb2eb3edb01b98fe0a40831542a31242af3205b962ce1e4c52d521ee1e5d3a.js.다운로드"></script><div class="tui-tooltip" style="display: none;"><div class="arrow"></div><span class="text"></span></div>
+
+<script>
+//<![CDATA[
+  I18n.defaultLocale = "ko";
+  I18n.locale = "ko";
+
+//]]>
+</script>
+<script>
+//<![CDATA[
+window.addEventListener('load', function() {});
+//]]>
+</script>
+  <script src="./프로그래머스_files/all.js.다운로드" type="text/javascript">
+    cloudinary.setCloudName('eightcruz');
+  </script>
+
+  <script src="./프로그래머스_files/loader.js.다운로드" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    Rollbar.configure({
+      payload: {
+        environment: "production",
+        
+      }
+    });
+  </script>
+
+
+
+<noscript>
+  이 사이트의 기능을 모두 활용하기 위해서는 자바스크립트를 활성화할 필요가 있습니다.
+  <a href="http://www.enable-javascript.com/ko/" target="_blank">
+    브라우저에서 자바스크립트를 활성화하는 방법</a>을 참고하세요.
+</noscript>
+
+
+<div id="snackbar-container"></div></body></html>

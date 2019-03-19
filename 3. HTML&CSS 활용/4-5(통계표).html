@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 500px;
+            table-layout: fixed; /*각 셀의 너비 동일하게, 성능에 있어서 반드시 추가해야한다*/
+            font-size:13px;
+        }
+
+        .col {
+            width: 90px;
+        }
+
+        th {
+            font-weight: normal;
+            vertical-align: top; /*셀의 글들이 위쪽으로 올라간다.*/
+        }
+        
+        th,td{
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        thead th {
+            padding: 5px 0;
+            border-bottom: 2px solid #000;
+        }
+
+        tbody td {
+            height: 40px;
+        }
+
+        .th_view,
+        .th_rate,
+        tbody td {
+            text-align: right;
+        }
+
+        .th_male,.th_female{
+            background: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <caption>성별, 연령별 분포 목록</caption>
+            <colgroup>
+                <!--col 태그를 사용, span 속성으로 병합-->
+                <col span="2" class="col">
+                <col span="2">
+            </colgroup>
+            <tr>
+                <th scope="col">연령별</th>
+                <th scope="col">성별</th>
+                <th scope="col" class="th_view">조회수</th>
+                <th scope="col" class="th_rate">비율</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th rowspan="2" scope="rowgroup">전체</th>
+                <th scope="row" class="th_male">남</th>
+                <td>0</td>
+                <td>0.0%</td>
+            </tr>
+            <tr>
+                <th scope="row" class="th_female">여</th>
+                <td>0</td>
+                <td>0.0%</td>
+            </tr>
+            <tr>
+                <th rowspan="2" scope="rowgroup">0-12</th>
+                <th class="th_male">남</th>
+                <td>0</td>
+                <td>0.0%</td>
+            </tr>
+            <tr>
+                <th class="th_female">여</th>
+                <td>0</td>
+                <td>0.0%</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

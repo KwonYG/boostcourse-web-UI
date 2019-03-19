@@ -989,3 +989,33 @@ p {
 - 이유는 테이블 요소들의 z-index 순서가 다르기 때문
 ![](./img/4-4-1.png)
 - 위가 테이블 레이어 순서이다.
+
+---
+#### 5) 통계표 제작
+
+- `table-layout:fixed;`는 너비를 일정하게 만드는데 사용하는 것 뿐만 아니라, 성능에 있어서 반드시 추가되어야 하는 속성이다.
+- `display:table;` 속성을 부여할때에도 `table-layout:fixed`를 적용 하여야 한다.
+- `col` 태그에는 width, background, border 속성밖에 적용되지 않는다. ★
+    - ex) text-align 속성 적용 불가
+---
+#### 6) 달력 제작
+- 각 레이러 라인 처리부분 자세히 보기
+    - `.today` 부분
+
+----
+#### 7) 표 요약 정리 ★ 꼭 보기
+
+- 테이블 접근성
+    - th scope = "col, row, colgroup, rowgroup"
+    - id="", headers="" 
+- 셀의 크기
+    - table-layout: fixed; 
+- 셀 안에서의 콘텐츠 정렬
+    - text-align, vertical-align
+- 테이블의 테두리
+    - 기본 모양은 테두리가 없음
+    - 테두리 사이의 간격 제거
+- `<colgroup>`, `<col>`
+    - width 주로 사용
+- 테이블과 position
+    - td 태그는 틀로 보고 그 안긔 콘텐츠는 셀 안에 div 추가해서 작성
