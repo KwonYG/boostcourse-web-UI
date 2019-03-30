@@ -1019,3 +1019,76 @@ p {
     - width 주로 사용
 - 테이블과 position
     - td 태그는 틀로 보고 그 안긔 콘텐츠는 셀 안에 div 추가해서 작성
+---
+### 5.
+#### 2) 레이어팝업 + 딤드 배경 제작
+##### 주요 기능 
+- 텍스트가 길어지면 팝업 창이 세로로 길어지도록 처리
+- 버튼은 하단 고정
+ ##### 스타일 정보
+- 팝업창 너비 : 300px
+- 팝업창 높이 : 200px (가변)
+- 텍스트 여백 : 50px 30px 30px
+- 버튼 높이 : 50px, 하단 고정
+- 딤드 배경 : #000, 투명도 30%
+##### 주요 태그 및 속성 
+- HTML
+    - div, strong, p, button
+- CSS
+- float (float 해제), width, min-height, padding, border
+- text-align, font-weight, font-size
+
+##### 내용
+- `z-index`는 반드시 해당 선택자에 `position:relative`가 있어야 한다.
+- `<button>`은 inline-block 요소이다. 그래서 버튼과 버튼 사이게 공백이 있다.
+    - ★ 절반으로 나눌때 완벽하게 나뉘지 않는다. 이를 주의하자
+    - `float`속성을 사용해 정렬한다.
+- `<button>`은 기본적으로 `box-sizing:border-box`속성이 부여되어 있다.
+- ★ content가 뷰포트보다 길 경우, popup이 relative 된 부모가 없기 때문에 스크롤 된 영역이 모두 노출된다.
+    -  popup에 absolute 대신 fixed 넣어서, 뷰포트를 기준으로 위치하도록 변경하면 스크롤이 되더라도 딤드레이어는 화면에 가득 차게 노출시키는 것이 좋습니다.
+--- 
+#### 3) 레이어팝업 중앙정렬
+팝업 사이즈가 고정일 경우와 가변일 경우로 나뉘어 중앙정렬 방법이 달라진다.
+
+##### 주요 기능 
+팝업 사이즈가 고정일 때 뿐만 아니라, 가변일 경우에도 화면 내 중앙 정렬이 되도록 처리
+
+##### 스타일 정보
+- 팝업 위치 : 뷰포트 기준 중앙 정렬
+- 팝업 사이즈 : 고정 / 가변
+ 
+##### 주요 태그 및 속성 
+- HTML
+    - div
+- CSS
+    - position, margin, display, vertical-align, text-align, :after
+
+##### 내용
+###### 고정일 경우
+- top, left를 50%로 하여도 정중앙정렬이되지 않는다. 그래서 margin을 이용해서 중앙정렬을 맞춘다.
+    - margin '-값'을 이용
+    - margin:auto를 이용해 정렬할 수 있다.
+
+###### ★margin: auto;
+margin의 top, left, right, bottom 모두 auto로 적용할 경우, margin: auto; 로 축약하여 사용할 수 있습니다. 하지만 경우에 따라 auto는 0으로 처리되기도 합니다.
+
+- 0으로 처리되는 경우
+    - 상하 margin
+    - inline, float 요소, 혹은 absolute, fixed로 위치가 고정된 요소의 모든 margin
+- auto로 처리되는 경우
+    - width가 있는 요소의 좌우 margin
+    - absolute의 top + bottom + height 혹은 left + right + width 값이 함께 있는 요소의 모든 margin
+ 
+###### 가변일 경우
+- 팝업 사이즈 고정일 경우
+    - position: absoulte; | margin 마이너스 값
+        - margin 값에 대한 추가적인 연산 필요
+    - position: absolute; | margin: auto;
+        - margin 값에 대한 추가적 연산이 필요 없음
+ 
+
+- 팝업 사이즈 가변일 경우
+    - display: inline-block; | vertical-align: middle; | text-align: center;
+        - 빈 태그 혹은 가상 요소(:after)가 하나 더 필요
+    - display: table | table-cell;
+        - 많은 코드 중첩

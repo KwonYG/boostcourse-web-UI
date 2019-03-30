@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        .content{
+            height:5000px; /* 페이지 컨텐츠가 많아 스크롤이 생긴것을 가정*/
+        }
+
+        .popup{
+            position: fixed;/* 뷰포트 기준으로 화면 사이즈 만큼*/
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+        }
+
+        .popup_layer{
+            position:relative;
+            width:300px;
+            min-height:150px;/* 가변 높이의 최솟값 설정 '팝업창 높이(200px) - 패딩영역(50px)'*/
+            padding-bottom:50px; /* 버튼영역을 확보해준다. */
+            background: #fff;
+            z-index: 10; /*z-index는 반드시 position:relative가 있어야 한다.*/
+            
+        }
+
+        .text_area{
+            padding:50px 30px 30px;
+            text-align: center;
+        }
+
+        .btn_area{
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+            height:50px;
+            overflow: hidden;
+        }
+
+        .btn{
+            float: left; 
+            width: 50%;
+            height:100%;
+            border:0;
+            background:pink;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .btn.no{
+            background: lightblue;
+        }
+
+        .popup_dimmed{
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background: #000;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!--콘텐츠-->
+    </div>
+    <div class="popup">
+        <div class="popup_layer">
+            <div class="text_area">
+                <strong class="title">팝업 타이틀</strong>
+                <p class="text">팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역
+                        팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역
+                        팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역팝업 텍스트 영역
+                </p>
+            </div>
+            <div class="btn_area">
+                <button type="button" name="button" class="btn">예</button>
+                <button type="button" name="button" class="btn no">아니오</button>
+            </div>
+        </div>
+        <div class="popup_dimmed"></div>
+    </div>
+</body>
+</html>
