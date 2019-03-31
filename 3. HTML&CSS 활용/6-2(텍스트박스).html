@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./reset.css">
+    <title>Document</title>
+    <style>
+        .text_form {
+            width: 198px;
+            margin-top: 20px;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .text_form input {
+            height: 20px;
+            line-height: 20xp;
+            border: 0 none;
+            font-size: 15px;
+        }
+
+        .text_form input[type=text]::placeholder {
+            /* IE 불가*/
+            color: red;
+            opacity: 1;
+            /* 파이어 폭스에 대응*/
+        }
+
+        .text_form input[type=text]:-ms-placeholder {
+            /* IE 대응*/
+            color: red;
+        }
+
+        .text_form input[type=text]::-ms-placeholder {
+            /* 엣지 대응*/
+            color: red;
+        }
+
+        .text_form input[type=password]::placeholder {
+            /* IE 불가*/
+            color: blue;
+            opacity: 1;
+            /* 파이어 폭스에 대응*/
+        }
+
+        .text_form input[type=password]:-ms-placeholder {
+            /* IE 대응*/
+            color: blue;
+        }
+
+        .text_form input[type=password]::-ms-placeholder {
+            /* 엣지 대응*/
+            color: blue;
+        }
+
+        .textarea {
+            width: 300px;
+            height: 150px;
+            margin-top: 20px;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .textarea textarea {
+            width: 100%;
+            height: 100%;
+            border: 0 none;
+            padding: 0;
+            font-size: 15px;
+            resize: none;
+            /* 사이즈 변화가 없게 */
+        }
+
+        .textarea textarea::placeholder {
+            color: green;
+            opacity: 1;
+        }
+
+        .textarea textarea:-ms-placeholder {
+            color: green;
+        }
+
+        .textarea textarea::-ms-placeholder {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text_form">
+        <input type="text" placeholder="이름을 입력해주세요.">
+    </div>
+
+    <div class="text_form">
+        <input type="password" placeholder="비밀번호를 입력해주세요.">
+    </div>
+
+    <div class="textarea">
+        <textarea name="" id="" cols="80" rows="8" placeholder="문구를 입력해주세요."></textarea>
+    </div>
+</body>
+
+</html>

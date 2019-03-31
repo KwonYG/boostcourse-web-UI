@@ -1092,3 +1092,37 @@ margin의 top, left, right, bottom 모두 auto로 적용할 경우, margin: auto
         - 빈 태그 혹은 가상 요소(:after)가 하나 더 필요
     - display: table | table-cell;
         - 많은 코드 중첩
+
+---
+### 6. 폼
+#### 2) 폼 커스텀 - 텍스트 박스
+![](./img/6-2-1.png)
+
+##### 주요 기능 
+- 텍스트박스의 스타일링
+- placeholder (기본문구) 스타일링
+##### 스타일 정보
+- 회색(#ddd) 선을 갖는 박스형태
+##### 주요 태그 및 속성 
+- HTML
+    - input
+    - textarea
+- CSS
+    - ::placeholder 
+    - 비표준 프리픽스(prefix)
+
+##### 내용
+- `text_form input[type=text]::placeholder`는 EI를 제외한 나머지 브라우저에만 적용 가능하다.
+    - `.text_form input[type=text]:-ms-placeholder`: IE 대응
+    - `.text_form input[type=text]::-ms-placeholder`: 엣지 대응
+    - 아래와 같이 함께 사용하는 것보단 따로 써주는 것이 더 좋다.
+    ```css
+    .textarea textarea:-ms-placeholder, .textarea textarea::-ms-placeholder{
+        color: green;
+    }
+    ```
+
+- 파이어폭스 브라우저에는 opacity 값이 부여되어있다.
+---
+##### 이후 링크로 대체
+- [링크](https://www.edwith.org/boostcourse-ui/joinLectures/19157)
